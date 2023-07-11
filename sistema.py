@@ -1,3 +1,4 @@
+import math
 def obtener_tipo():
     print("en el mercado existen tres tipos de sistema fotovoltaicos electricos ON-GRID, OFF-GRID y MIXTO \n")
     print("ON-GRID: \nel objetivo principal es reducir el consumo electrico domiciliario. En esta instalacion",
@@ -12,6 +13,25 @@ def obtener_tipo():
         tipo=input("error. elegi una  ONGRID, OFFGRID o MIXTO ")
         tipo=tipo.lower()
     return tipo
+
+def obtener_cantidad(wp,watts,factor):
+    if wp!= None:
+            cantidad=((watts*4)*1.3)/(factor*wp )
+            return (math.ceil(cantidad),wp,math.ceil(watts))
+    else:
+        print("no tenemos sistemas para este consumo")
+        return False,False,False
+
+def calcular_inversor(consumo):
+    if consumo<1000:
+        return 1000
+    elif consumo<2000:
+        return 2000
+    elif consumo<3000:
+        return 3000
+    elif consumo>3001:
+        return "no tenemos sistemas pera esta cantidad de consumo"
+
 
 
 
