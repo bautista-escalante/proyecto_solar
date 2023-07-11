@@ -1,14 +1,15 @@
 import math
-class paneles:
-    def __init__(self,tipo,factor):
+class Ongrid:
+    def __init__(self,factor):
         self.factor=factor
-        self.tipo=tipo
         self.consumo= self.calcular_consumo()
         self.watts_pico= self.calcular_wp()
 
     def calcular_consumo(self)->int:
-        if self.tipo=="ongrid":
-            kw=int(input("ingrese los kw consumidos en su ultima boleta de electricidad "))
+            try:
+                kw=int(input("ingrese los kw consumidos en su ultima boleta de electricidad "))
+            except ValueError:
+                print("error. ingresa un numero ")
             watts=(kw*1000)/ 720
             return math.ceil(watts)
 
@@ -25,8 +26,7 @@ class paneles:
 
     def obtener_cantidad(self):
         if self.watts_pico[0]!= None:
-                cantidad=((self.consumo*4)*1.3)/(self.factor*self.watts_pico[0] )
+                cantidad=((self.consumo*4)*1.3)/(self.factor*self.watts_pico[0])
                 return (math.ceil(cantidad))
         else:
             print("no tenemos sistemas para este consumo")
-            return False,False,False
