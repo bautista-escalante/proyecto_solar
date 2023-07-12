@@ -9,6 +9,7 @@ print(datos)
 angulo=datos[1]
 provincia=datos[0]
 factor=datos[2]
+radiacion=datos[3]
 tipo=obtener_tipo()
 if tipo=="ongrid":
       sistema=Ongrid(factor)
@@ -21,35 +22,29 @@ if tipo=="ongrid":
             #### inversor ####
             datos=calcular_inversor(watts)
             inversor=datos[0]
-            print("\npara instalar un sistema {0} en {1} vas a necesitar\n-{2} paneles de {3} watts (los paneles deben tener una inclinacion de {4} mirando al norte) \n-un inversor de {5} watts"
-            .format(tipo,provincia,cantidad, watts_pico, angulo,inversor)) 
+            print(f"\npara instalar un sistema {tipo} en {provincia} vas a necesitar",
+                  f"\n-{cantidad} paneles de {watts_pico} watts (los paneles deben tener una inclinacion",
+                  f" de {angulo} mirando al norte) \n-un inversor {tipo} de {inversor} watts") 
       except TypeError:
             print("no contamos con sistemas para ese consumo")
 elif tipo=="offgrid":
       try:
-            consumo=int(input("ingrese el consumo de todo lo que desea instalar en el sistema  ingrese 0 cuando quiera parar"))
+            consumo=int(input("ingrese el consumo de todo lo que desea instalar en el sistema"))
             tiempo=int(input("ingrese el tiempo que desea utilizarlo (debe ser un numero entero en horas)"))
       except ValueError:
             print("error. ingresa un numero ")
       ##### inversor ####
       datos=calcular_inversor(consumo)
       inversor=datos[0]
-      tension=datos[1]
-      sistema=Offgrid(consumo,tiempo,tension)
+      tension=int(datos[1])
+      sistema=Offgrid(consumo,tiempo,tension,factor,radiacion)
       #### bateria ####
       capacidad=sistema.asignar_capacidad()
       cantidad=sistema.calcular_cantidad()
-
-
-
-
-
-"""if tipo=="ongrid"and watts!= False:
-      print("\npara instalar un sistema {0} en {1} vas a necesitar\n-{2} paneles de {3} watts (los paneles deben tener una inclinacion de {4} mirando al norte) \n-un inversor de {5} watts"
-            .format(tipo,nombre,cantidad, watts_pico, angulo,inversor)) 
-elif tipo=="offgrid" and watts!=False:
-      print("\npara instalar un sistema {0} en {1} vas a necesitar\n-{6}baterias de {7}ah \n-{2} paneles de {3} watts (los paneles deben tener una inclinacion de {4} mirando al norte) \n-un inversor superior a {5} watts"
-            .format(tipo,nombre,cantidad, watts_pico, angulo,inversor)) 
-elif tipo=="mixto":
-      print("\npara instalar un sistema {0} en {1} vas a necesitar\n-{2} paneles de {3} watts (los paneles deben tener una inclinacion de {4} mirando al norte) \n-un inversor superior a {5} watts"
-            .format(tipo,nombre,cantidad, watts_pico, angulo,inversor))""" 
+      #### paneles ####
+      potencia_panel=sistema.obtener_watts()
+      cantidad_pv=sistema.calcular_paneles()
+      print(f"\npara instalar un sistema {tipo} en {provincia} vas a necesitar",
+            f"\n- {cantidad} baterias con una tension de {tension}v y capacidad de {capacidad} AH",
+            f"\n- {cantidad_pv} paneles de {potencia_panel}w",
+            f"\n- 1 inversor {tipo} de {inversor}w")

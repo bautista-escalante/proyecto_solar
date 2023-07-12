@@ -1,18 +1,26 @@
+import math
 class Offgrid:
-    def __init__(self,consumo,tiempo,tension):
-        self.trabajo=self.calcular_trabajo()
+    def __init__(self,consumo,tiempo,tension,factor,radiacion):
         self.consumo=consumo
+        self.factor=factor
         self.tiempo=tiempo
         self.tension=tension
+        self.radiacion=radiacion
+        self.trabajo=self.calcular_trabajo()
+        self.watts=self.calcular_watts()
         self.capacidad=self.calcular_capacidad()
         self.cantidad=self.calcular_cantidad()
+        self.watts_pv=self.obtener_watts()
 
     def calcular_trabajo(self):
         trabajo=self.consumo*self.tiempo 
         return trabajo 
 
     def calcular_capacidad(self):
-        capacidad=self.trabajo/(0.30*self.tension)
+        try:
+            capacidad=self.trabajo/(0.5 * self.tension)
+        except ZeroDivisionError:
+            print("error")
         return capacidad
 
     def asignar_capacidad(self):
@@ -32,8 +40,21 @@ class Offgrid:
                 cantidad=2
             case 48:
                 cantidad=4
-        return cantidad
+        return cantidad 
     
+    def calcular_watts(self):
+        Watts = self.trabajo * 0.75 / self.radiacion 
+        return Watts 
+    
+    def calcular_paneles(self):
+        cantidad=self.watts / self.watts_pv
+        return math.ceil(cantidad)
 
-
-
+    def obtener_watts(self):
+        if self.watts<500 :
+            watts=150
+        elif self.watts<1000:
+            watts=270
+        elif self.watts<2000:
+            watts=450
+        return watts

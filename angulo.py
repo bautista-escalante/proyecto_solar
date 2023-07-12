@@ -18,4 +18,4 @@ def calcular_angulo(lista:list)->tuple:
     for provincias in lista_compiada:
         if provincias["nombre"]==nombre.lower():
             angulo=abs(abs( provincias["latitud"] -10))
-            return (nombre,angulo,provincias["factor"])
+            return (nombre,angulo,provincias["factor"],provincias["radiacion"])
