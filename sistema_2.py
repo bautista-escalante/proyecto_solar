@@ -9,8 +9,9 @@ class Offgrid:
         self.trabajo=self.calcular_trabajo()
         self.watts=self.calcular_watts()
         self.capacidad=self.calcular_capacidad()
-        self.cantidad=self.calcular_cantidad()
+        self.cantidad=self.calcular_cantidad_serie()
         self.watts_pv=self.obtener_watts()
+        self.capacidad_aprox=self.asignar_capacidad()
 
     def calcular_trabajo(self):
         trabajo=self.consumo*self.tiempo 
@@ -30,9 +31,13 @@ class Offgrid:
             capacidad =200
         elif self.capacidad <300:
             capacidad = 150
+        elif self.capacidad <600:
+            capacidad = 200
+        else :
+            return None
         return capacidad
 
-    def calcular_cantidad(self):  
+    def calcular_cantidad_serie(self):  
         match self.tension:
             case 12:
                 cantidad=1
@@ -40,8 +45,23 @@ class Offgrid:
                 cantidad=2
             case 48:
                 cantidad=4
+            case _:
+                cantidad=None
         return cantidad 
     
+    def calcular_cantidad_paralelo(self):  
+        if self.capacidad < 100:
+            cantidad=1
+        elif self.capacidad < 200:
+            cantidad=1
+        elif self.capacidad <300:
+            cantidad=2
+        elif self.capacidad <600:
+            cantidad=3
+        else :
+            return None
+        return cantidad
+
     def calcular_watts(self):
         Watts = self.trabajo * 0.75 / self.radiacion 
         return Watts 
@@ -57,4 +77,6 @@ class Offgrid:
             watts=270
         elif self.watts<2000:
             watts=450
+        else:
+            return None
         return watts

@@ -1,8 +1,9 @@
-from angulo import *
-from sistema import *
 from provincias import provincias
-from sistema_1 import Ongrid
 from sistema_2 import Offgrid
+from sistema_1 import Ongrid
+from sistema_3 import Mixto
+from sistema import *
+from angulo import *
 
 datos=calcular_angulo(provincias)
 print(datos)
@@ -29,8 +30,8 @@ if tipo=="ongrid":
             print("no contamos con sistemas para ese consumo")
 elif tipo=="offgrid":
       try:
-            consumo=int(input("ingrese el consumo de todo lo que desea instalar en el sistema"))
-            tiempo=int(input("ingrese el tiempo que desea utilizarlo (debe ser un numero entero en horas)"))
+            consumo=int(input("ingrese el consumo de todo lo que desea instalar en el sistema "))
+            tiempo=int(input("ingrese el tiempo que desea utilizarlo (debe ser un numero entero en horas) "))
       except ValueError:
             print("error. ingresa un numero ")
       ##### inversor ####
@@ -40,11 +41,35 @@ elif tipo=="offgrid":
       sistema=Offgrid(consumo,tiempo,tension,factor,radiacion)
       #### bateria ####
       capacidad=sistema.asignar_capacidad()
-      cantidad=sistema.calcular_cantidad()
+      serie=sistema.calcular_cantidad_serie()
+      paralelo=sistema.calcular_cantidad_paralelo()
       #### paneles ####
       potencia_panel=sistema.obtener_watts()
       cantidad_pv=sistema.calcular_paneles()
+      if capacidad!=None and potencia_panel!=None and paralelo!=1:
+            print(f"\npara instalar un sistema {tipo} en {provincia} vas a necesitar",
+                  f"\n- {serie} en serie y {paralelo} en paralelo baterias con una tension de {tension}v y capacidad de {capacidad} AH",
+                  f"\n- {cantidad_pv} paneles de {potencia_panel}w",
+                  f"\n- 1 inversor {tipo} de {inversor}w")
+      elif paralelo==1:
+            print(f"\npara instalar un sistema {tipo} en {provincia} vas a necesitar",
+                  f"\n- {serie} baterias con una tension de {tension}v y capacidad de {capacidad} AH",
+                  f"\n- {cantidad_pv} paneles de {potencia_panel}w",
+                  f"\n- 1 inversor {tipo} de {inversor}w")
+      else:
+            print("no tenemos sistemas para ese consumo")
+elif tipo =="mixto":
+      consumo=int(input("ingrese el consumo de todo lo que quiere conectar en el sistema"))
+      datos=calcular_inversor(consumo)
+      inversor=datos[0]
+      tension=int(datos[1])
+      sistema=Mixto(consumo,tension,factor,radiacion)
+      datos=sistema.cantidad_bateria_mixto()
+      cantidad=datos[0]
+      capacidad=datos[1]
+      potencia_panel=0
+      cantidad_pv=0
       print(f"\npara instalar un sistema {tipo} en {provincia} vas a necesitar",
             f"\n- {cantidad} baterias con una tension de {tension}v y capacidad de {capacidad} AH",
             f"\n- {cantidad_pv} paneles de {potencia_panel}w",
-            f"\n- 1 inversor {tipo} de {inversor}w")
+            f"\n- 1 inversor {tipo} de {inversor}w") 
