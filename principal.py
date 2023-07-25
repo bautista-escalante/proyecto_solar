@@ -2,7 +2,7 @@ from provincias import provincias
 from sistema_2 import Offgrid
 from sistema_1 import Ongrid
 from sistema_3 import Mixto
-from sistema import *
+from funciones import *
 from angulo import *
 
 while True:
