@@ -10,19 +10,27 @@ class Ongrid:
                 kw=int(input("ingrese los kw consumidos en su ultima boleta de electricidad "))
             except ValueError:
                 print("error. ingresa un numero ")
-            watts=(kw*1000)/ 720
-            return math.ceil(watts)
+                return None
+            except UnboundLocalError:
+                 print("error. ingresa un numero ")
+                 return None
+            else:
+                watts=(kw*1000)/ 720
+                return math.ceil(watts)
 
     def calcular_wp(self)->int:
-        if self.consumo<1000:
-            wp=100
-        elif self.consumo<2000:
-            wp=300
-        elif self.consumo<3000 :
-            wp=450
-        elif self.consumo>3001:
-            return None
-        return wp,self.consumo
+        if self.consumo!=None:
+            if self.consumo<1000:
+                wp=100
+            elif self.consumo<2000:
+                wp=300
+            elif self.consumo<3000 :
+                wp=450
+            elif self.consumo>3001:
+                return None
+            return wp,self.consumo
+        else:
+            print("error")
 
     def obtener_cantidad(self):
         if self.watts_pico[0]!= None:
