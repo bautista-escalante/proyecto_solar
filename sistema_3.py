@@ -3,11 +3,12 @@ import math
 
 class Mixto(Offgrid):
     def __init__(self,consumo,tension,factor,radiacion):
-        super().__init__(consumo,15,tension,factor,radiacion)
+        super().__init__(consumo,8,tension,factor,radiacion)
         self.consumo=consumo
         self.watts=self.calcular_paneles_mixto()
+        self.watts_pico=self.calcular_wp()
 
-    def calcular_paneles_mixto(self):
+    def calcular_paneles_mixto(self)->int:
         watts_offgrid=self.calcular_watts()
         watts_total=watts_offgrid + self.consumo*self.factor 
         return math.ceil(watts_total)
@@ -15,18 +16,19 @@ class Mixto(Offgrid):
     def cantidad_bateria_mixto(self)->tuple:
         self.calcular_trabajo()
         self.calcular_capacidad()
-        cantidad=self.calcular_cantidad()
+        serie=self.calcular_cantidad_serie()
+        paralelo=self.calcular_cantidad_paralelo()
         capacidad=self.asignar_capacidad()
-        return (capacidad,cantidad)
+        return (capacidad,serie,paralelo)
 
-    def obtener_cantidad(self):
-        if self.calcular_wp()[0]!= None:
-                cantidad=((self.consumo*4)*1.3)/(self.factor*self.watts_pico[0])
+    def obtener_cantidad(self)->int:
+        if self.watts_pico!= None:
+                cantidad=((self.consumo*6)*1.3)/(self.factor*self.watts_pico)
                 return (math.ceil(cantidad))
         else:
             print("no tenemos sistemas para este consumo")
 
-    def calcular_wp(self)->tuple:
+    def calcular_wp(self)->int:
         if self.consumo<1000:
             wp=100
         elif self.consumo<2000:
@@ -35,7 +37,7 @@ class Mixto(Offgrid):
             wp=450
         elif self.consumo>3001:
             return None
-        return(wp,self.consumo)
+        return wp
 
 
 
