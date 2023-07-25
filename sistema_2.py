@@ -9,7 +9,6 @@ class Offgrid:
         self.trabajo=self.calcular_trabajo()
         self.watts=self.calcular_watts()
         self.capacidad=self.calcular_capacidad()
-        self.cantidad=self.calcular_cantidad_serie()
         self.watts_pv=self.obtener_watts()
         self.capacidad_aprox=self.asignar_capacidad()
 
