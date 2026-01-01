@@ -1,39 +1,30 @@
-from provincias import provincias
-from sistema_2 import Offgrid
-from sistema_1 import Ongrid
-from sistema_3 import Mixto
-from funciones import *
-from angulo import *
+from sistemas.Offgrid import Offgrid
+from sistemas.Ongrid import Ongrid
+from sistemas.Mixto import Mixto
 
+from infrastructura.radiacion import obtener_por_ubicacion
+from servicios.inversor import calcular_inversor
+from servicios.angulo import calcular_angulo
+
+""" 
+{
+  "consumo_watts": 3500,
+  "horas_uso_diarias": 6,
+  "provincia": "Buenos Aires",
+  "tipo_sistema": "aislado",
+  "horas_autonomia": 12
+} """
 while True:
-      datos=calcular_angulo(provincias)
-      try:
-            angulo=datos[1]
-            provincia=datos[0]
-            factor=datos[2]
-            radiacion=datos[3]
-            tipo=obtener_tipo()
-      except Exception:
-            break
+      provincia="viene en el frontend"
+      tipo="viene en el frontend"
+      consumo_watts="viene en el frontend"
+      
+      angulo=calcular_angulo(provincia)
+      factor, radiacion = obtener_por_ubicacion(provincia)
+ 
       if tipo=="ongrid":
-            sistema=Ongrid(factor)
-            #### paneles ####
-            try:
-                  cantidad=sistema.obtener_cantidad()
-                  datos=sistema.calcular_wp()
-                  watts_pico=datos[0]
-                  watts=datos[1]
-                  #### inversor ####
-                  datos=calcular_inversor(watts)
-                  inversor=datos[0]
-                  if inversor!=None and datos!=None:
-                        print(f"\npara instalar un sistema {tipo} en {provincia} vas a necesitar",
-                              f"\n-{cantidad} paneles de {watts_pico} watts (los paneles deben tener una inclinacion",
-                              f" de {angulo} mirando al norte) \n-un inversor {tipo} de {inversor} watts") 
-            except TypeError:
-                  print("no contamos con sistemas para ese consumo")
-            except NameError:
-                  print("")
+            print
+      
       elif tipo=="offgrid":
             try:
                   consumo=int(input("ingrese el consumo de todo lo que desea instalar en el sistema "))

@@ -1,7 +1,0 @@
-en este programa se debe pedir al usuario que ingrese su consumo electrico, su ubicacion,
-el tipo de instalacion que desea 
-realizar todas las operaciones correspondientes a el angulo, la cantidad de paneles, cantidad de baterias 
-y tipo de inversor 
-validar todas las entradas de informacion 
-e informar toda esta informacion en un archivo csv 
-el fin de este programa es informar y aconsejar sobre la instalacion que desea nuestro cliente 

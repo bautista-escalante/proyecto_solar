@@ -1,7 +1,7 @@
-from sistema_2 import Offgrid
+from sistema_base import sistema_base
 import math
 
-class Mixto(Offgrid):
+class Mixto(sistema_base):
     def __init__(self,consumo,tension,factor,radiacion):
         super().__init__(consumo,8,tension,factor,radiacion)
         self.consumo=consumo
