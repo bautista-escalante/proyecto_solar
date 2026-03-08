@@ -1,4 +1,4 @@
-from sistemas.Ongrid import Ongrid
+from core.models.Ongrid import Ongrid
 
 def construir_sistema_ongrid(sistema: Ongrid) -> dict:
     cantidad = sistema.cantidad_paneles()
@@ -18,5 +18,6 @@ def construir_sistema_ongrid(sistema: Ongrid) -> dict:
             "necesaria": False,
             "capacidad_ah": None,
             "voltaje_banco": None
-        }
+        },
+        "angulo_inclinacion": sistema.angulo
     }

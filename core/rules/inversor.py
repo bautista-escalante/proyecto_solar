@@ -7,4 +7,4 @@ def calcular_inversor(consumo):
     elif consumo<2700:
         return (3000,48)
     elif consumo>2701:
-        return None
+        return None 

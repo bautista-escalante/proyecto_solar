@@ -1,140 +1,121 @@
-[
-    {
-        "nombre": "Buenos Aires",
-        "factor": 4.125,
-        "latitud": -36.7,
-        "radiacion": 4
+{
+    "Buenos Aires": 
+    { 
+        "factor": 4.125, 
+        "latitud": -36.7, 
+        "radiacion": 4 
     },
-    {
-        "nombre": "Catamarca",
-        "factor": 5.083,
-        "latitud": -27.3,
-        "radiacion": 5
+    "Catamarca": 
+    { 
+        "factor": 5.083, 
+        "latitud": -27.3, 
+        "radiacion": 5 
     },
-    {
-        "nombre": "Chaco",
-        "factor": 4.25,
-        "latitud": -26.4,
-        "radiacion": 4.5
+    "Chaco": 
+    { 
+        "factor": 4.25, 
+        "latitud": -26.4, 
+        "radiacion": 4.5 
     },
-    {
-        "nombre": "Chubut",
+    "Chubut": 
+    { 
         "factor": 3.875,
         "latitud": -43.8,
         "radiacion": 3.5
     },
-    {
-        "nombre": "Cordoba",
+    "Cordoba":{
         "factor": 4.25,
         "latitud": -32.1,
         "radiacion": 4
     },
-    {
-        "nombre": "Corrientes",
+    "Corrientes": {
         "factor": 4.542,
         "latitud": -28.8,
         "radiacion": 4
     },
-    {
-        "nombre": "Entre Ríos",
+    "Entre Ríos": {
         "factor": 4.33,
         "latitud": -32.06,
         "radiacion": 4
     },
-    {
-        "nombre": "Formosa",
+    "Formosa": {
         "factor": 4.25,
         "latitud": -24.9,
         "radiacion": 4.5
     },
-    {
-        "nombre": "Jujuy",
+    "Jujuy": {
         "factor": 5.708,
         "latitud": -23.3,
         "radiacion": 5
     },
-    {
-        "nombre": "La Pampa",
+    "La Pampa": {
         "factor": 4.125,
         "latitud": -37.1,
         "radiacion": 4
     },
-    {
-        "nombre": "La Rioja",
+    "La Rioja": {
         "factor": 5.083,
         "latitud": -29.7,
         "radiacion": 4.5
     },
-    {
-        "nombre": "Mendoza",
+    "Mendoza": {
         "factor": 4.792,
         "latitud": -34.6,
         "radiacion": 4
     },
-    {
-        "nombre": "Misiones",
+    "Misiones": {
         "factor": 4.125,
         "latitud": -26.9,
         "radiacion": 4
     },
-    {
-        "nombre": "Neuquén",
+    "Neuquén": {
         "factor": 4.458,
         "latitud": -38.6,
         "radiacion": 4
     },
-    {
-        "nombre": "Río Negro",
+    "Río Negro": {
         "factor": 4.167,
         "latitud": -40.4,
         "radiacion": 3.5
     },
-    {
-        "nombre": "Salta",
+    "Salta": {
         "factor": 4.042,
         "latitud": -24.3,
         "radiacion": 5
     },
-    {
-        "nombre": "San Juan",
+    "San Juan": {
         "factor": 4.583,
         "latitud": -30.9,
         "radiacion": 5
     },
-    {
-        "nombre": "San Luis",
+    "San Luis": {
         "factor": 4.5,
         "latitud": -33.8,
         "radiacion": 4
     },
-    {
-        "nombre": "Santa Cruz",
+    "Santa Cruz": {
         "factor": 3.292,
         "latitud": -48.8,
         "radiacion": 3
     },
-    {
-        "nombre": "Santa Fe",
+    "Santa Fe": {
         "factor": 4.375,
         "latitud": -30.8,
         "radiacion": 4
     },
-    {
-        "nombre": "Santiago del Estero",
+    "Santiago del Estero": {
         "factor": 4.25,
         "latitud": -27.8,
         "radiacion": 4.5
     },
-    {
-        "nombre": "Tierra del Fuego, Antártida e Islas del Atlántico Sur",
+    "Tierra del Fuego, Antártida e Islas del Atlántico Sur": {
         "factor": 2.67,
         "latitud": -82.5,
         "radiacion": 2.4
     },
-    {
-        "nombre": "Tucuman",
+    "Tucuman": {
         "factor": 4,
         "latitud": -26.9,
         "radiacion": 4.5
     }
-]
+}
